@@ -6,11 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-public class Measurement implements Serializable {
+public class Measurement {
 
   @Id
   @GeneratedValue(generator = "system-uuid")

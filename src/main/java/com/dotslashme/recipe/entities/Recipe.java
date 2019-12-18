@@ -8,12 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Recipe implements Serializable {
+public class Recipe {
 
   @Id
   @GeneratedValue(generator = "system-uuid")
