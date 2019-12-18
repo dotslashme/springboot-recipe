@@ -1,15 +1,18 @@
 package com.dotslashme.recipe.serializations;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-public class RecipeDto {
+public class RecipeDto implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private UUID id;
 
   private String name;
 
-  private List<RecipeIngredientDto> recipeIngredientList;
+  private transient List<RecipeIngredientDto> recipes;
 
   public UUID getId() {
     return id;
@@ -27,11 +30,11 @@ public class RecipeDto {
     this.name = name;
   }
 
-  public List<RecipeIngredientDto> getRecipeIngredientList() {
-    return recipeIngredientList;
+  public List<RecipeIngredientDto> getRecipes() {
+    return recipes;
   }
 
-  public void setRecipeIngredientList(List<RecipeIngredientDto> recipeIngredientList) {
-    this.recipeIngredientList = recipeIngredientList;
+  public void setRecipes(List<RecipeIngredientDto> recipes) {
+    this.recipes = recipes;
   }
 }

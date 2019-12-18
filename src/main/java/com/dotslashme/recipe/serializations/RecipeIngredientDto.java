@@ -1,8 +1,11 @@
 package com.dotslashme.recipe.serializations;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class RecipeIngredientDto {
+public class RecipeIngredientDto implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private UUID id;
 
