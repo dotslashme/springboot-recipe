@@ -22,9 +22,18 @@ public class Recipe {
   @Column(length = 200)
   private String name;
 
+  @Column(name = "oven_temperature_celsius")
+  private Integer ovenTemperatureCelsius;
+
+  @Column(name = "oven_time_minutes")
+  private Integer ovenTimeMinutes;
+
+  @Column(name = "preparation_time_minutes")
+  private Integer preparationTimeMinutes;
+
   @OneToMany
   @JoinColumn(name = "recipe_id")
-  private List<RecipeIngredient> recipeIngredientList;
+  private List<RecipeIngredient> ingredients;
 
   public UUID getId() {
     return id;
@@ -42,11 +51,35 @@ public class Recipe {
     this.name = name;
   }
 
-  public List<RecipeIngredient> getRecipeIngredientList() {
-    return recipeIngredientList;
+  public Integer getOvenTemperatureCelsius() {
+    return ovenTemperatureCelsius;
   }
 
-  public void setRecipeIngredientList(List<RecipeIngredient> recipeIngredientList) {
-    this.recipeIngredientList = recipeIngredientList;
+  public void setOvenTemperatureCelsius(Integer ovenTemperatureCelsius) {
+    this.ovenTemperatureCelsius = ovenTemperatureCelsius;
+  }
+
+  public Integer getOvenTimeMinutes() {
+    return ovenTimeMinutes;
+  }
+
+  public void setOvenTimeMinutes(Integer ovenTimeMinutes) {
+    this.ovenTimeMinutes = ovenTimeMinutes;
+  }
+
+  public Integer getPreparationTimeMinutes() {
+    return preparationTimeMinutes;
+  }
+
+  public void setPreparationTimeMinutes(Integer preparationTimeMinutes) {
+    this.preparationTimeMinutes = preparationTimeMinutes;
+  }
+
+  public List<RecipeIngredient> getIngredients() {
+    return ingredients;
+  }
+
+  public void setIngredients(List<RecipeIngredient> ingredients) {
+    this.ingredients = ingredients;
   }
 }

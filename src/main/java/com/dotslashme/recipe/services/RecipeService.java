@@ -19,7 +19,6 @@ public class RecipeService {
 
   private final RecipeRepository repository;
   private final ModelMapper modelMapper;
-  private final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
   @Autowired
   public RecipeService(RecipeRepository repository, ModelMapper modelMapper) {
@@ -27,27 +26,23 @@ public class RecipeService {
     this.modelMapper = modelMapper;
   }
 
-  public void createRecipe(RecipeDto recipe) {
-    this.repository.save(this.modelMapper.map(recipe, Recipe.class));
+  public String createRecipe(RecipeDto recipe) {
+    Recipe r = this.repository.save(this.modelMapper.map(recipe, Recipe.class));
+    return String.format("/recipe/%s", r.getId());
+  }
+
+  public List<RecipeDto> readRecipes() {
+    return this.repository.findAll()
+      .stream()
+      .map(recipe -> this.modelMapper.map(recipe, RecipeDto.class))
+      .collect(Collectors.toList());
   }
 
   public RecipeDto readRecipe(UUID identifier) {
     return this.modelMapper.map(this.repository.getOne(identifier), RecipeDto.class);
   }
 
-  public void updateRecipe(UUID identifier, RecipeDto recipe) {
-    this.logger.debug("Updating {} with data {}", this.repository.findById(identifier), recipe);
-  }
-
   public void deleteRecipe(UUID identifier) {
-    Recipe r = this.repository.getOne(identifier);
-    this.repository.delete(r);
-  }
-
-  public List<RecipeDto> readAllRecipes() {
-    return this.repository.findAll()
-      .stream()
-      .map(recipe -> this.modelMapper.map(recipe, RecipeDto.class))
-      .collect(Collectors.toList());
+    this.repository.deleteById(identifier);
   }
 }
