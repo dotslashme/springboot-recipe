@@ -8,12 +8,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Recipe {
 
+  @SuppressWarnings("")
   public static void main(String[] args) {
-    if (args.length > 0) {
-      args = new String[0];
-    }
-
-    SpringApplication.run(Recipe.class, args);
+    SpringApplication.run(Recipe.class);
   }
 
   @Bean
