@@ -4,12 +4,9 @@ import com.dotslashme.recipe.entities.Recipe;
 import com.dotslashme.recipe.repositories.RecipeRepository;
 import com.dotslashme.recipe.serializations.RecipeDto;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
