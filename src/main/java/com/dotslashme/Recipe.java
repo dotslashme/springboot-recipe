@@ -9,6 +9,10 @@ import org.springframework.context.annotation.Bean;
 public class Recipe {
 
   public static void main(String[] args) {
+    if (args.length > 0) {
+      args = new String[0];
+    }
+
     SpringApplication.run(Recipe.class, args);
   }
 
