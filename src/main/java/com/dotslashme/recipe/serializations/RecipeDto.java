@@ -12,7 +12,7 @@ public class RecipeDto implements Serializable {
 
   private String name;
 
-  private transient List<RecipeIngredientDto> recipes;
+  private transient List<RecipeIngredientDto> ingredients;
 
   public UUID getId() {
     return id;
@@ -30,11 +30,11 @@ public class RecipeDto implements Serializable {
     this.name = name;
   }
 
-  public List<RecipeIngredientDto> getRecipes() {
-    return recipes;
+  public List<RecipeIngredientDto> getIngredients() {
+    return ingredients;
   }
 
-  public void setRecipes(List<RecipeIngredientDto> recipes) {
-    this.recipes = recipes;
+  public void setIngredients(List<RecipeIngredientDto> ingredients) {
+    this.ingredients = ingredients;
   }
 }

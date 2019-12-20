@@ -14,7 +14,7 @@ public class Ingredient {
   @Id
   @GeneratedValue(generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
-  private UUID id;
+  private UUID id = UUID.randomUUID();
 
   @Column(length = 200, nullable = false, unique = true)
   private String name;
@@ -45,6 +45,11 @@ public class Ingredient {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public Ingredient withName(String name) {
+    this.name = name;
+    return this;
   }
 
   public Integer getKcalPer100Grams() {

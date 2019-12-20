@@ -14,7 +14,7 @@ public class Measurement {
   @Id
   @GeneratedValue(generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
-  private UUID id;
+  private UUID id = UUID.randomUUID();
 
   @Column(length = 200, nullable = false, unique = true)
   private String name;
@@ -29,6 +29,11 @@ public class Measurement {
 
   public String getName() {
     return name;
+  }
+
+  public Measurement withName(String name) {
+    this.name = name;
+    return this;
   }
 
   public void setName(String name) {

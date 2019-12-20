@@ -28,14 +28,18 @@ public class MeasurementService {
   }
 
   public String createMeasurement(MeasurementDto measurement) {
-    Measurement m = this.repository.save(this.modelMapper.map(measurement, Measurement.class));
+    Measurement m = this.saveMeasurement(this.modelMapper.map(measurement, Measurement.class));
     return String.format("/measurement/%s", m.getId());
+  }
+
+  Measurement saveMeasurement(Measurement measurement) {
+    return this.repository.findByName(measurement.getName()).orElseGet(() -> this.repository.save(measurement));
   }
 
   public List<MeasurementDto> getAllMeasurements() {
     return this.repository.findAll()
       .stream()
-      .map(measurement -> this.modelMapper.map(measurement, com.dotslashme.recipe.serializations.MeasurementDto.class))
+      .map(measurement -> this.modelMapper.map(measurement, MeasurementDto.class))
       .collect(Collectors.toList());
   }
 

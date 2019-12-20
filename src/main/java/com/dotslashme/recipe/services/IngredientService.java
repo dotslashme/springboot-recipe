@@ -24,8 +24,12 @@ public class IngredientService {
   }
 
   public String createIngredient(IngredientDto ingredient) {
-    Ingredient i = this.repository.save(this.modelMapper.map(ingredient, Ingredient.class));
+    Ingredient i = this.saveIngredient(this.modelMapper.map(ingredient, Ingredient.class));
     return String.format("/ingredient/%s", i.getId());
+  }
+
+  Ingredient saveIngredient(Ingredient ingredient) {
+    return this.repository.findByName(ingredient.getName()).orElseGet(() -> this.repository.save(ingredient));
   }
 
   public List<IngredientDto> readIngredients() {

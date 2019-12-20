@@ -2,6 +2,7 @@ package com.dotslashme.recipe.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class Recipe {
   @Id
   @GeneratedValue(generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
-  private UUID id;
+  private UUID id = UUID.randomUUID();
 
   @Column(length = 200)
   private String name;
@@ -31,7 +32,7 @@ public class Recipe {
   @Column(name = "preparation_time_minutes")
   private Integer preparationTimeMinutes;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "recipe_id")
   private List<RecipeIngredient> ingredients;
 

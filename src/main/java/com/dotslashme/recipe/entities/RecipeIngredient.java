@@ -16,7 +16,7 @@ public class RecipeIngredient {
   @Id
   @GeneratedValue(generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
-  private UUID id;
+  private UUID id = UUID.randomUUID();
 
   @ManyToOne
   @JoinColumn(name = "measurement_id")
@@ -45,6 +45,11 @@ public class RecipeIngredient {
     this.measurement = measurement;
   }
 
+  public RecipeIngredient withMeasurement(Measurement measurement) {
+    this.measurement = measurement;
+    return this;
+  }
+
   public Ingredient getIngredient() {
     return ingredient;
   }
@@ -53,11 +58,20 @@ public class RecipeIngredient {
     this.ingredient = ingredient;
   }
 
+  public RecipeIngredient withIngredient(Ingredient ingredient) {
+    this.ingredient = ingredient;
+    return this;
+  }
   public Float getAmount() {
     return amount;
   }
 
   public void setAmount(Float amount) {
     this.amount = amount;
+  }
+
+  public RecipeIngredient withAmount(Float amount) {
+    this.amount = amount;
+    return this;
   }
 }
