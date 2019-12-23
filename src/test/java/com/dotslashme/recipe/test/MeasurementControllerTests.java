@@ -10,8 +10,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -59,5 +61,13 @@ public class MeasurementControllerTests {
       .getContentAsString();
 
     assertThat(measurements).as("Returned data").doesNotContain("\"name\":\"dl\"");
+  }
+
+  @Test
+  public void deleteNonExistentMeasurement(@Autowired MockMvc mockMvc) {
+    final UUID usedId = UUID.randomUUID();
+    final String expectedMessage = String.format("No class com.dotslashme.recipe.entities.Measurement entity with id %s exists!", usedId);
+
+    assertThatThrownBy(() -> mockMvc.perform(delete(String.format("/measurement/%s", usedId)))).hasMessageEndingWith(expectedMessage);
   }
 }

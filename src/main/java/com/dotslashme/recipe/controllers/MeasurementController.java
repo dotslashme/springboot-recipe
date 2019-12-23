@@ -34,7 +34,7 @@ public class MeasurementController {
 
   @GetMapping
   public ResponseEntity<List<MeasurementDto>> getAllMeasurements() {
-    return ResponseEntity.ok(this.service.getAllMeasurements());
+    return ResponseEntity.ok(this.service.getMeasurements());
   }
 
   @GetMapping(path = "/{identifier}")

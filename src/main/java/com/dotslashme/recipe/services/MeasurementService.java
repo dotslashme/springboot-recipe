@@ -36,7 +36,7 @@ public class MeasurementService {
     return this.repository.findByName(measurement.getName()).orElseGet(() -> this.repository.save(measurement));
   }
 
-  public List<MeasurementDto> getAllMeasurements() {
+  public List<MeasurementDto> getMeasurements() {
     return this.repository.findAll()
       .stream()
       .map(measurement -> this.modelMapper.map(measurement, MeasurementDto.class))
