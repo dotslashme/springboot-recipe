@@ -39,6 +39,17 @@ public class IngredientService {
       .collect(Collectors.toList());
   }
 
+  public IngredientDto updateIngredient(IngredientDto ingredient) {
+    Ingredient i = this.repository.getOne(ingredient.getId());
+    i.setCarbohydratesPer100Grams(ingredient.getCarbohydratesPer100Grams());
+    i.setFatsPer100Grams(ingredient.getFatsPer100Grams());
+    i.setKcalPer100Grams(ingredient.getKcalPer100Grams());
+    i.setName(ingredient.getName());
+    i.setProteinsPer100Grams(ingredient.getProteinsPer100Grams());
+
+    return this.modelMapper.map(this.repository.save(i), IngredientDto.class);
+  }
+
   public IngredientDto readIngredient(UUID identifier) {
     return this.modelMapper.map(this.repository.getOne(identifier), IngredientDto.class);
   }
@@ -46,4 +57,5 @@ public class IngredientService {
   public void deleteIngredient(UUID identifier) {
     this.repository.deleteById(identifier);
   }
+
 }

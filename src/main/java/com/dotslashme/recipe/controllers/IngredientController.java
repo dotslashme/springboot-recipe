@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +36,11 @@ public class IngredientController {
   @GetMapping
   public ResponseEntity<List<IngredientDto>> readIngredients() {
     return ResponseEntity.ok(this.service.readIngredients());
+  }
+
+  @PatchMapping
+  public ResponseEntity<IngredientDto> updateIngredient(@RequestBody IngredientDto ingredient) {
+    return ResponseEntity.ok(this.service.updateIngredient(ingredient));
   }
 
   @GetMapping(path = "/{identifier}")
