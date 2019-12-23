@@ -1,6 +1,7 @@
 package com.dotslashme.recipe.serializations;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ public class RecipeDto implements Serializable {
 
   private String name;
 
-  private transient List<RecipeIngredientDto> ingredients;
+  private transient List<RecipeIngredientDto> ingredients = Collections.emptyList();
 
   public UUID getId() {
     return id;

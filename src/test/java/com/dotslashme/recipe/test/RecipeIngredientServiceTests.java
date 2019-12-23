@@ -26,8 +26,6 @@ public class RecipeIngredientServiceTests {
   @Test
   public void recipeIngredientSanityTest(@Autowired MockMvc mockMvc, @Autowired RecipeIngredientService service) throws Exception {
 
-
-
     Measurement grams = new Measurement().withName("g");
     Measurement tbsp = new Measurement().withName("tbsp");
     Measurement dl = new Measurement().withName("dl");
