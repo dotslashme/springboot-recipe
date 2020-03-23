@@ -2,7 +2,7 @@ package com.dotslashme.recipe.services;
 
 import com.dotslashme.recipe.entities.Measurement;
 import com.dotslashme.recipe.repositories.MeasurementRepository;
-import com.dotslashme.recipe.serializations.MeasurementDto;
+import com.dotslashme.recipe.serializations.v1.MeasurementDto;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

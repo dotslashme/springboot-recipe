@@ -1,6 +1,6 @@
 package com.dotslashme.recipe.controllers;
 
-import com.dotslashme.recipe.serializations.IngredientDto;
+import com.dotslashme.recipe.serializations.v1.IngredientDto;
 import com.dotslashme.recipe.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +17,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+import static com.dotslashme.recipe.util.Constants.INGREDIENT_V1_CONTENT_TYPE;
+
 @RestController
 @RequestMapping(path = "/ingredient")
 public class IngredientController {
@@ -28,22 +30,32 @@ public class IngredientController {
     this.service = service;
   }
 
-  @PostMapping
+  @PostMapping(
+    consumes = {INGREDIENT_V1_CONTENT_TYPE},
+    produces = {INGREDIENT_V1_CONTENT_TYPE}
+  )
   public ResponseEntity<Object> createIngredient(@RequestBody IngredientDto ingredient) {
     return ResponseEntity.created(URI.create(this.service.createIngredient(ingredient))).build();
   }
 
-  @GetMapping
+  @GetMapping(
+    produces = {INGREDIENT_V1_CONTENT_TYPE}
+  )
   public ResponseEntity<List<IngredientDto>> readIngredients() {
     return ResponseEntity.ok(this.service.readIngredients());
   }
 
-  @PatchMapping
+  @PatchMapping(
+    consumes = {INGREDIENT_V1_CONTENT_TYPE},
+    produces = {INGREDIENT_V1_CONTENT_TYPE}
+  )
   public ResponseEntity<IngredientDto> updateIngredient(@RequestBody IngredientDto ingredient) {
     return ResponseEntity.ok(this.service.updateIngredient(ingredient));
   }
 
-  @GetMapping(path = "/{identifier}")
+  @GetMapping(
+    path = "/{identifier}",
+    produces = {INGREDIENT_V1_CONTENT_TYPE})
   public ResponseEntity<IngredientDto> readIngredient(@PathVariable UUID identifier) {
     return ResponseEntity.ok(this.service.readIngredient(identifier));
   }

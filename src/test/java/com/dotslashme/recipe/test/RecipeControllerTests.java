@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Objects;
 
+import static com.dotslashme.recipe.util.Constants.RECIPE_V1_CONTENT_TYPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -29,7 +30,7 @@ public class RecipeControllerTests {
     String inputData = Objects.requireNonNull(File.getResourceAsString("recipe-chicken-curry-stew.json"));
 
     String targetUri = mockMvc.perform(post("/recipe")
-      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .contentType(RECIPE_V1_CONTENT_TYPE)
       .content(inputData))
       .andExpect(status().isCreated())
       .andExpect(header().exists("Location"))

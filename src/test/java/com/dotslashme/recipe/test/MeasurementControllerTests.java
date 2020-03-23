@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Objects;
 import java.util.UUID;
 
+import static com.dotslashme.recipe.util.Constants.MEASUREMENT_V1_CONTENT_TYPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -31,7 +32,7 @@ public class MeasurementControllerTests {
     String inputData = Objects.requireNonNull(File.getResourceAsString("measurement-dl.json"));
 
     String targetUri = mockMvc.perform(post("/measurement")
-      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .contentType(MEASUREMENT_V1_CONTENT_TYPE)
       .content(inputData))
       .andExpect(status().isCreated())
       .andExpect(header().exists("Location"))

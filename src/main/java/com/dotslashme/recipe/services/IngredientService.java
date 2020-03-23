@@ -2,7 +2,7 @@ package com.dotslashme.recipe.services;
 
 import com.dotslashme.recipe.entities.Ingredient;
 import com.dotslashme.recipe.repositories.IngredientRepository;
-import com.dotslashme.recipe.serializations.IngredientDto;
+import com.dotslashme.recipe.serializations.v1.IngredientDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

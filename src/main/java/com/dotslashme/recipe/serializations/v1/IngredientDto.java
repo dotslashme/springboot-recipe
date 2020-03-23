@@ -1,4 +1,4 @@
-package com.dotslashme.recipe.serializations;
+package com.dotslashme.recipe.serializations.v1;
 
 import java.io.Serializable;
 import java.util.UUID;

@@ -1,6 +1,6 @@
 package com.dotslashme.recipe.test;
 
-import com.dotslashme.recipe.serializations.IngredientDto;
+import com.dotslashme.recipe.serializations.v1.IngredientDto;
 import com.dotslashme.recipe.test.utils.File;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -11,10 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 
+import static com.dotslashme.recipe.util.Constants.INGREDIENT_V1_CONTENT_TYPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -35,7 +35,7 @@ public class IngredientControllerTests {
     String inputData = Objects.requireNonNull(File.getResourceAsString("ingredient-potato.json"));
 
     String targetUri = mockMvc.perform(post("/ingredient")
-      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .contentType(INGREDIENT_V1_CONTENT_TYPE)
       .content(inputData))
       .andExpect(status().isCreated())
       .andExpect(header().exists("Location"))
@@ -81,7 +81,7 @@ public class IngredientControllerTests {
     String inputData = Objects.requireNonNull(File.getResourceAsString("ingredient-potato.json"));
 
     String targetUri = mockMvc.perform(post("/ingredient")
-      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .contentType(INGREDIENT_V1_CONTENT_TYPE)
       .content(inputData))
       .andExpect(status().isCreated())
       .andExpect(header().exists("Location"))
@@ -106,7 +106,7 @@ public class IngredientControllerTests {
     potato.setProteinsPer100Grams(3.0F);
 
     IngredientDto updatedPotato = objectMapper.readValue(mockMvc.perform(patch("/ingredient")
-      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .contentType(INGREDIENT_V1_CONTENT_TYPE)
       .content(objectMapper.writeValueAsString(potato)))
       .andDo(document("patch-ingredient"))
       .andExpect(status().isOk())
