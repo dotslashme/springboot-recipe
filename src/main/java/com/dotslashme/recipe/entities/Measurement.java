@@ -31,12 +31,12 @@ public class Measurement {
     return name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public Measurement withName(String name) {
     this.name = name;
     return this;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 }

@@ -2,12 +2,7 @@ package com.dotslashme.recipe.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -62,6 +57,7 @@ public class RecipeIngredient {
     this.ingredient = ingredient;
     return this;
   }
+
   public Float getAmount() {
     return amount;
   }

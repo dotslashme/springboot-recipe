@@ -40,8 +40,7 @@ public class RecipeService {
           .collect(Collectors.toList())));
     }
 
-    r = this.repository.save(r);
-    return String.format("/recipe/%s", r.getId());
+    return String.format("/recipe/%s", this.repository.save(r).getId());
   }
 
   public List<RecipeDto> readRecipes() {
